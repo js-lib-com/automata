@@ -1,0 +1,27 @@
+if($I1 > $I2) {
+	$O1;
+}
+else {
+	$O2;
+}
+
+
+I1: field: private double presetTemperature; 
+
+I2: field: private double temperatureSensorValue;
+
+O1: thermostat.setON();
+
+O2: thermostat.setOFF();
+
+
+
+if($I1 > $I2) {
+	thermostat.setState(true);
+}
+else {
+	thermostat.setState(false);
+}
+
+boolean state = $I1 > $I2;
+thermostat.setValue(state);

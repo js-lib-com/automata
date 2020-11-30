@@ -1,0 +1,14 @@
+package js.hera.auto.engine;
+
+import js.hera.device.BedroomLightDevice;
+
+public class BedroomLightAction extends DeviceAction
+{
+  private double bedroomSwitchState;
+  private BedroomLightDevice device;
+  	
+  protected void update()
+  {
+    device.setState(bedroomSwitchState);  	
+  }
+}

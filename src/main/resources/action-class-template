@@ -1,0 +1,11 @@
+package js.hera.auto.engine;
+
+public class ${class-simple-name} extends DeviceAction
+{
+	// fields
+	 
+	protected void update()
+	{
+		// logic 
+	}
+}

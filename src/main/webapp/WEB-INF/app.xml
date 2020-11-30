@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app-descriptor>
+	<managed-classes>
+		<app interface="js.tiny.container.core.App" class="com.jslib.automata.Application" />
+	</managed-classes>
+</app-descriptor>
