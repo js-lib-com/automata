@@ -27,6 +27,18 @@ public abstract class DeviceAction extends Action
     }
   }
 
+  protected void notify(String message, Object... args) throws Exception
+  {
+    if(args.length > 0) {
+      message = String.format(message, args);
+    }
+    log.debug("Send notification |%s|.", message);
+    RMI("http://Android.local:8080/sync", "com.jslib.hera.agent.Controller", "hello", new Object[]
+    {
+        message
+    }, null);
+  }
+
   @SuppressWarnings("unchecked")
   protected <T> T RMI(String implementationURL, String className, String methodName, Object[] arguments, Class<T> returnType) throws Exception
   {
