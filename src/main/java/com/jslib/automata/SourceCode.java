@@ -78,9 +78,14 @@ public class SourceCode implements Converter
         Files.sourceFile(baseDir, className)
     };
 
+    File librariesDir = new File(baseDir, "lib");
+    File[] libraries = librariesDir.listFiles((File dir, String name) -> {
+      return name.endsWith(".jar");
+    });
+
     JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
     try (StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null)) {
-      fileManager.setLocation(StandardLocation.CLASS_PATH, Arrays.asList(new File(baseDir, "lib/automata-0.0.1.jar")));
+      fileManager.setLocation(StandardLocation.CLASS_PATH, Arrays.asList(libraries));
       fileManager.setLocation(StandardLocation.CLASS_OUTPUT, Arrays.asList(new File(baseDir, "bin")));
 
       Iterable<? extends JavaFileObject> compilationUnits = fileManager.getJavaFileObjectsFromFiles(Arrays.asList(sourceFiles));
