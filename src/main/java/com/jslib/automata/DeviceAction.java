@@ -13,7 +13,7 @@ import js.util.Strings;
 
 public abstract class DeviceAction extends Action
 {
-  private static final Log log = LogFactory.getLog(DeviceAction.class);
+  protected static final Log log = LogFactory.getLog(DeviceAction.class);
 
   private DeviceActionHandler handler;
 
