@@ -74,8 +74,10 @@ public abstract class DeviceAction extends Action
     String post = String.format("%s value=%f", measurement, value);
     log.debug("Post |%s| to |%s|.", post, url);
     Files.copy(new ByteArrayInputStream(post.getBytes()), connection.getOutputStream());
-    if(connection.getResponseCode() != 200) {
-      log.warn("Fail to write on InfluxDB. Response code |%d|.", connection.getResponseCode());
+
+    int responseCode = connection.getResponseCode();
+    if(responseCode < 200 || responseCode >= 300) {
+      log.warn("Fail to write on InfluxDB. Response code |%d|.", responseCode);
     }
   }
 }
