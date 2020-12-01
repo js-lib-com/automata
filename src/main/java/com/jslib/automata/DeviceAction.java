@@ -68,9 +68,13 @@ public abstract class DeviceAction extends Action
   {
     URL url = new URL("http://localhost:8086/write?db=sensors");
     HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+    connection.setRequestMethod("POST");
     connection.setDoOutput(true);
 
     String post = String.format("%s value=%f", measurement, value);
     Files.copy(new ByteArrayInputStream(post.getBytes()), connection.getOutputStream());
+    if(connection.getResponseCode() != 200) {
+      log.warn("Fail to write on InfluxDB. Response code |%d|.", connection.getResponseCode());
+    }
   }
 }
