@@ -1,7 +1,6 @@
 package com.jslib.automata;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -33,7 +32,7 @@ public abstract class DeviceAction extends Action
     }
   }
 
-  protected void notify(String message, Object... args) throws Exception
+  protected void notify(String message, Object... args)
   {
     if(args.length > 0) {
       message = String.format(message, args);
@@ -46,7 +45,7 @@ public abstract class DeviceAction extends Action
   }
 
   @SuppressWarnings("unchecked")
-  protected <T> T RMI(String implementationURL, String className, String methodName, Object[] arguments, Class<T> returnType) throws Exception
+  protected <T> T RMI(String implementationURL, String className, String methodName, Object[] arguments, Class<T> returnType)
   {
     HttpRmiTransaction rmi = HttpRmiTransaction.getInstance(implementationURL);
     rmi.setConnectionTimeout(4000);
@@ -55,29 +54,40 @@ public abstract class DeviceAction extends Action
 
     rmi.setMethod(className, methodName);
     rmi.setArguments(arguments);
-    if(returnType != null) {
-      rmi.setReturnType(returnType);
-      return (T)rmi.exec(null);
-    }
 
-    rmi.exec(null);
+    try {
+      if(returnType != null) {
+        rmi.setReturnType(returnType);
+        return (T)rmi.exec(null);
+      }
+
+      rmi.exec(null);
+    }
+    catch(Throwable t) {
+      log.dump("Error on device RMI:", t);
+    }
     return null;
   }
 
-  protected void record(String measurement, double value) throws IOException
+  protected void record(String measurement, double value)
   {
-    URL url = new URL("http://localhost:8086/write?db=sensors");
-    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-    connection.setRequestMethod("POST");
-    connection.setDoOutput(true);
+    try {
+      URL url = new URL("http://localhost:8086/write?db=sensors");
+      HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+      connection.setRequestMethod("POST");
+      connection.setDoOutput(true);
 
-    String post = String.format("%s value=%f", measurement, value);
-    log.debug("Post |%s| to |%s|.", post, url);
-    Files.copy(new ByteArrayInputStream(post.getBytes()), connection.getOutputStream());
+      String post = String.format("%s value=%f", measurement, value);
+      log.debug("Post |%s| to |%s|.", post, url);
+      Files.copy(new ByteArrayInputStream(post.getBytes()), connection.getOutputStream());
 
-    int responseCode = connection.getResponseCode();
-    if(responseCode < 200 || responseCode >= 300) {
-      log.warn("Fail to write on InfluxDB. Response code |%d|.", responseCode);
+      int responseCode = connection.getResponseCode();
+      if(responseCode < 200 || responseCode >= 300) {
+        log.warn("Fail to write on InfluxDB. Response code |%d|.", responseCode);
+      }
+    }
+    catch(Throwable t) {
+      log.dump("Error on device record:", t);
     }
   }
 }

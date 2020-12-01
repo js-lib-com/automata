@@ -11,7 +11,7 @@ import js.util.Params;
 
 public abstract class Action
 {
-  protected abstract void update() throws Exception;
+  protected abstract void update();
 
   private final String name;
   protected transient ErrorHandler errorHandler;
