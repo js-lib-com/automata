@@ -1,8 +1,14 @@
 package com.jslib.automata;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import js.log.Log;
 import js.log.LogFactory;
 import js.net.client.HttpRmiTransaction;
+import js.util.Files;
 import js.util.Strings;
 
 public abstract class DeviceAction extends Action
@@ -56,5 +62,15 @@ public abstract class DeviceAction extends Action
 
     rmi.exec(null);
     return null;
+  }
+
+  protected void record(String measurement, double value) throws IOException
+  {
+    URL url = new URL("http://localhost:8086/write?db=sensors");
+    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+    connection.setDoOutput(true);
+
+    String post = String.format("%s value=%f", measurement, value);
+    Files.copy(new ByteArrayInputStream(post.getBytes()), connection.getOutputStream());
   }
 }
