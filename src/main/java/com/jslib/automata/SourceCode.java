@@ -15,11 +15,10 @@ import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
 
 import com.jslib.automata.util.Files;
-
-import js.converter.Converter;
-import js.converter.ConverterException;
-import js.util.Classes;
-import js.util.Strings;
+import com.jslib.converter.Converter;
+import com.jslib.converter.ConverterException;
+import com.jslib.util.Classes;
+import com.jslib.util.Strings;
 
 public class SourceCode implements Converter
 {

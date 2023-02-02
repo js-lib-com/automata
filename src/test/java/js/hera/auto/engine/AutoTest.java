@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.jslib.api.json.Json;
 import com.jslib.automata.Action;
 import com.jslib.automata.ActionFactory;
 import com.jslib.automata.Automata;
@@ -23,10 +24,8 @@ import com.jslib.automata.AutomataImpl;
 import com.jslib.automata.EventDescriptor;
 import com.jslib.automata.Rule;
 import com.jslib.automata.SourceCode;
-
-import js.json.Json;
-import js.lang.GType;
-import js.util.Classes;
+import com.jslib.lang.GType;
+import com.jslib.util.Classes;
 
 @Ignore
 public class AutoTest

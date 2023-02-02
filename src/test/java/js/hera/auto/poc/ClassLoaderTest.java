@@ -10,17 +10,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Test;
 
 import com.jslib.automata.Action;
-
-import js.util.Classes;
+import com.jslib.util.Classes;
 
 public class ClassLoaderTest
 {
   @Test
-  public void loadClass() throws ClassNotFoundException, InstantiationException, IllegalAccessException
+  public void loadClass() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
   {
     File binDir = new File("src/test/resources/auto/bin");
     String className = "js.hera.auto.engine.Switch";
@@ -32,7 +32,7 @@ public class ClassLoaderTest
     Class<? extends Action> actionClass = loader.loadClass(className);
     assertThat(actionClass, notNullValue());
 
-    Action action = actionClass.newInstance();
+    Action action = actionClass.getDeclaredConstructor().newInstance();
     action.setParameter("switchState", "false");
     action.execute();
 

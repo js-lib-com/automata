@@ -16,8 +16,8 @@ import javax.tools.ToolProvider;
 
 import org.junit.Test;
 
-import js.util.Classes;
-import js.util.Files;
+import com.jslib.automata.util.Files;
+import com.jslib.util.Classes;
 
 public class CompilerTest
 {

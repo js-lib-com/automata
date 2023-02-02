@@ -1,24 +1,29 @@
 package com.jslib.automata;
 
+import java.io.IOException;
 import java.io.Reader;
 
-import js.dom.Document;
-import js.dom.DocumentBuilder;
-import js.dom.Element;
-import js.util.Classes;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
+
+import com.jslib.api.dom.Document;
+import com.jslib.api.dom.DocumentBuilder;
+import com.jslib.api.dom.Element;
+import com.jslib.util.Classes;
 
 public class DrawIoParser implements DiagramParser
 {
   private final Document doc;
 
-  public DrawIoParser(Reader reader)
+  public DrawIoParser(Reader reader) throws IOException, SAXException
   {
     DocumentBuilder builder = Classes.loadService(DocumentBuilder.class);
     this.doc = builder.loadXML(reader);
   }
 
   @Override
-  public ActionClass parse()
+  public ActionClass parse() throws XPathExpressionException
   {
     ActionClass actionClass = new ActionClass();
 

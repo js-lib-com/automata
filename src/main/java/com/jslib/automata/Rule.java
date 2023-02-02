@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import js.lang.BugError;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Params;
-import js.util.Strings;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
+import com.jslib.lang.BugError;
+import com.jslib.util.Params;
+import com.jslib.util.Strings;
 
 public class Rule
 {

@@ -4,11 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import js.log.Log;
-import js.log.LogFactory;
-import js.net.client.HttpRmiTransaction;
-import js.util.Files;
-import js.util.Strings;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
+import com.jslib.automata.util.Files;
+import com.jslib.net.client.HttpRmiTransaction;
+import com.jslib.util.Strings;
 
 public abstract class DeviceAction extends Action
 {

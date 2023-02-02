@@ -3,11 +3,11 @@ package com.jslib.automata;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import js.converter.Converter;
-import js.converter.ConverterRegistry;
-import js.lang.BugError;
-import js.util.Classes;
-import js.util.Params;
+import com.jslib.converter.Converter;
+import com.jslib.converter.ConverterRegistry;
+import com.jslib.lang.BugError;
+import com.jslib.util.Classes;
+import com.jslib.util.Params;
 
 public abstract class Action
 {

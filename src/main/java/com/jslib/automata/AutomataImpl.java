@@ -12,16 +12,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.jslib.api.json.Json;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.automata.util.Files;
-
-import js.json.Json;
-import js.lang.BugError;
-import js.lang.GType;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
-import js.util.Params;
-import js.util.Strings;
+import com.jslib.lang.BugError;
+import com.jslib.lang.GType;
+import com.jslib.util.Classes;
+import com.jslib.util.Params;
+import com.jslib.util.Strings;
 
 public class AutomataImpl implements Automata
 {

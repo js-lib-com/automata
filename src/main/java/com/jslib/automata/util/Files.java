@@ -2,9 +2,9 @@ package com.jslib.automata.util;
 
 import java.io.File;
 
-import js.util.Strings;
+import com.jslib.util.Strings;
 
-public class Files extends js.util.Files
+public class Files extends com.jslib.util.Files
 {
   public static File sourceFile(File baseDir, String className)
   {

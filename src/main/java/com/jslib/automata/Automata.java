@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
-import js.lang.ManagedLifeCycle;
+import com.jslib.lang.ManagedLifeCycle;
 
 public interface Automata extends ManagedLifeCycle
 {

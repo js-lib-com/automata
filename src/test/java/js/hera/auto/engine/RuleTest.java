@@ -1,20 +1,24 @@
 package js.hera.auto.engine;
 
-import org.junit.Test;
+import java.io.IOException;
 
+import javax.xml.xpath.XPathExpressionException;
+
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import com.jslib.api.dom.Document;
+import com.jslib.api.dom.DocumentBuilder;
+import com.jslib.api.dom.Element;
 import com.jslib.automata.ActionClass;
 import com.jslib.automata.ActionField;
 import com.jslib.automata.ActionSource;
-
-import js.dom.Document;
-import js.dom.DocumentBuilder;
-import js.dom.Element;
-import js.util.Classes;
+import com.jslib.util.Classes;
 
 public class RuleTest
 {
   @Test
-  public void parse()
+  public void parse() throws XPathExpressionException, IOException, SAXException
   {
     DocumentBuilder builder = Classes.loadService(DocumentBuilder.class);
     Document doc = builder.loadXML(Classes.getResource("binary-light.xml"));
